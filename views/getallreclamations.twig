@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style type="text/css">
+    #taswira{
+        float: left;
+        margin: 5px;
+        width:180px;
+        height: 200px;
+    }
+</style>
+<table>
+    <tr>
+        <td>id</td>
+        <td>Date de creation</td>
+        <td>Description</td>
+        <td>Valide</td>
+        <td>supprimer</td>
+        <td>modifier</td>
+    </tr>
+    {% for rec in d_reclamation %}
+        <tr>
+            <td>
+                {{rec._id}}
+            </td>
+            <td>
+                {{rec.Date_de_creation }}
+            </td>
+            <td>
+                {{rec.Description}}
+            </td>
+            <td>
+                {{rec.Valide}}
+            </td>
+            <td> <form  action="/reclamations/delete" onsubmit="return confirm('Are you sure ?')" method="post" >
+                    <input id="in1" hidden type="text" value="{{ rec._id}}" name="id_c" >
+                    <button id="in2" type="submit" class="btn btn-dark" >Supprimer</button>
+                </form></td>
+            <td> <form  action="/reclamations/" method="post" >
+                    <input id="in1" hidden type="text" value="{{ rec._id}}" name="id_c" >
+                    <button id="in2" type="submit" class="btn btn-dark" >Modifier</button>
+                </form></td>
+
+        </tr>
+    {% endfor %}
+
+</table>
+
+<form action="/reclamations/" method="post">
+    <button id="in3" type="submit" class="btn btn-dark" >Add</button>
+</form>
+</body>
+</html>
